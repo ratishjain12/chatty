@@ -1,9 +1,12 @@
 import "./App.css";
+import MainContainer from "./components/MainContainer";
 
 function App() {
   return (
     <>
-      <div>App</div>
+      <div className="App">
+        <MainContainer />
+      </div>
     </>
   );
 }

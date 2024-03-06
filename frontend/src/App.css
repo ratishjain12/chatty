@@ -1,3 +1,10 @@
 * {
   margin: 0;
 }
+
+.App {
+  background-color: #dedede;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
