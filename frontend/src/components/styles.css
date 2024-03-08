@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
 }
-.work-area {
+.chatArea-container {
   flex: 0.7;
 }
 .sb-header {
@@ -44,4 +44,81 @@
   padding: 5px 5px;
   margin: 10px;
   flex: 1;
+}
+
+.sb-chatitem {
+  display: grid;
+  grid-template-columns: 32px auto auto;
+  grid-template-rows: auto auto;
+  gap: 12px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.sb-name {
+  font-size: 17px;
+}
+
+.sb-lastmessage {
+  font-size: 14px;
+  color: gray;
+}
+
+.sb-timestamp {
+  font-size: 13px;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  text-transform: capitalize;
+}
+
+.chatArea-container {
+  display: flex;
+  flex-direction: column;
+}
+.ca-header {
+  border-radius: 12px;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  background-color: white;
+}
+.ca-messages {
+  background-color: white;
+  border-radius: 12px;
+  padding: 5px 5px;
+  margin: 3px 5px;
+  flex: 0.97;
+}
+.ca-text {
+  background-color: white;
+  border-radius: 12px;
+  padding: 5px 5px;
+  margin: 5px 5px;
+  flex: 0.07;
+}
+.ch-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left-header {
+  display: flex;
+  gap: 10px;
+}
+
+.ca-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ca-text > input {
+  flex: 1;
+  outline: none;
+  border: none;
+  font-size: 16px;
+}
+
+.ch-status {
+  font-size: 12px;
 }
