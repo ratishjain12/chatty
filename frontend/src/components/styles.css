@@ -126,6 +126,7 @@
   /* justify-content: end; */
   flex: flex-end;
   flex: 1;
+  overflow: scroll;
 }
 .selfMessage-container {
   background-color: aquamarine;
@@ -168,28 +169,6 @@
   gap: 10px;
 }
 
-.ca-messages {
-  /* Ensure the inner content is not affected by the scrollbar width */
-  box-sizing: border-box;
-  height: 100%; /* Make sure the content fills the wrapper */
-
-  /* Additional styling for the .ca-messages content */
-  background-color: white;
-  border-radius: 12px;
-  padding: 5px 5px;
-  margin: 3px 5px;
-  overflow-y: auto; /* Ensure the content scrolls within the container */
-}
-
 .ca-messages::-webkit-scrollbar {
-  width: 8px; /* Set the width of the scrollbar */
-}
-
-.ca-messages::-webkit-scrollbar-thumb {
-  background-color: #cccccc; /* Color of the scrollbar thumb */
-  border-radius: 4px; /* Rounded corners of the scrollbar thumb */
-}
-
-.ca-messages::-webkit-scrollbar-track {
-  background-color: #f4f5f8; /* Color of the scrollbar track */
+  display: none; /* Set the width of the scrollbar */
 }

@@ -28,6 +28,9 @@ const ChatArea = () => {
           <SelfMessage />
           <RecievedMessage />
           <SelfMessage />
+          <SelfMessage />
+          <RecievedMessage />
+          <SelfMessage />
         </div>
       </div>
 
