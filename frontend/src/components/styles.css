@@ -14,6 +14,8 @@
 }
 .chatArea-container {
   flex: 0.7;
+  display: flex;
+  flex-direction: column;
 }
 .sb-header {
   background-color: white;
@@ -72,10 +74,6 @@
   text-transform: capitalize;
 }
 
-.chatArea-container {
-  display: flex;
-  flex-direction: column;
-}
 .ca-header {
   border-radius: 12px;
   padding: 10px 5px;
@@ -87,7 +85,6 @@
   border-radius: 12px;
   padding: 5px 5px;
   margin: 3px 5px;
-  flex: 0.97;
 }
 .ca-text {
   background-color: white;
@@ -121,4 +118,78 @@
 
 .ch-status {
   font-size: 12px;
+}
+.ca-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  /* justify-content: end; */
+  flex: flex-end;
+  flex: 1;
+}
+.selfMessage-container {
+  background-color: aquamarine;
+  border-radius: 12px;
+  width: max-content;
+  padding: 5px 5px;
+  margin-left: auto;
+  display: flex;
+}
+.sm-timestamp {
+  display: flex;
+  justify-content: end;
+  font-size: 10px;
+  color: gray;
+}
+.recievedMessage-container {
+  display: flex;
+  padding: 5px 5px;
+  gap: 10px;
+  width: max-content;
+  border-radius: 12px;
+}
+.rm-box {
+  background-color: #f4f5f8;
+  padding: 5px 5px;
+  border-radius: 12px;
+}
+
+.rm-timestamp {
+  display: flex;
+  justify-content: end;
+  font-size: 10px;
+  color: gray;
+}
+
+.ca-message-container {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ca-messages {
+  /* Ensure the inner content is not affected by the scrollbar width */
+  box-sizing: border-box;
+  height: 100%; /* Make sure the content fills the wrapper */
+
+  /* Additional styling for the .ca-messages content */
+  background-color: white;
+  border-radius: 12px;
+  padding: 5px 5px;
+  margin: 3px 5px;
+  overflow-y: auto; /* Ensure the content scrolls within the container */
+}
+
+.ca-messages::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+.ca-messages::-webkit-scrollbar-thumb {
+  background-color: #cccccc; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners of the scrollbar thumb */
+}
+
+.ca-messages::-webkit-scrollbar-track {
+  background-color: #f4f5f8; /* Color of the scrollbar track */
 }
