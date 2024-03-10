@@ -172,3 +172,49 @@
 .ca-messages::-webkit-scrollbar {
   display: none; /* Set the width of the scrollbar */
 }
+
+.welcome-container {
+  flex: 0.7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.welcome-logo {
+  width: 40%;
+}
+
+.welcome-title {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-slogan {
+  color: gray;
+}
+
+.cg-container {
+  flex: 0.7;
+  display: flex;
+  align-items: center;
+}
+.cg-box {
+  background-color: white;
+  margin-inline: auto;
+  width: 90%;
+  display: flex;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.cg-box > input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+}

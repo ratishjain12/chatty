@@ -1,5 +1,7 @@
-import ChatArea from "./ChatArea";
+// import ChatArea from "./ChatArea";
+import CreateGroups from "./CreateGroups";
 import Sidebar from "./Sidebar";
+// import Welcome from "./Welcome";
 // import Workarea from "./Workarea";
 import "./styles.css";
 const MainContainer = () => {
@@ -7,7 +9,9 @@ const MainContainer = () => {
     <div className="main-container">
       <Sidebar />
       {/* <Workarea /> */}
-      <ChatArea />
+      {/* <ChatArea /> */}
+      {/* <Welcome /> */}
+      <CreateGroups />
     </div>
   );
 };

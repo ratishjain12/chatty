@@ -1,11 +1,13 @@
 import "./App.css";
-import MainContainer from "./components/MainContainer";
+import Login from "./components/auth/Login";
+// import MainContainer from "./components/MainContainer";
 
 function App() {
   return (
     <>
       <div className="App">
-        <MainContainer />
+        {/* <MainContainer /> */}
+        <Login />
       </div>
     </>
   );
