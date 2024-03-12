@@ -55,8 +55,16 @@
   gap: 12px;
   margin: 5px;
   padding: 5px;
+  transition-duration: 0.5s;
+  border-radius: 20px;
+  cursor: pointer;
 }
-
+.sb-chatitem:hover {
+  background-color: #d9d9d9;
+}
+.sb-chatitem:active {
+  background-color: white;
+}
 .sb-name {
   font-size: 17px;
 }
@@ -217,4 +225,53 @@
   border: none;
   outline: none;
   font-size: 18px;
+}
+
+.list-container {
+  flex: 0.7;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5px;
+}
+
+.list-header {
+  background-color: white;
+  padding: 10px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.list-search {
+  background-color: white;
+  border-radius: 18px;
+  padding: 5px 5px;
+  margin: 10px 3px;
+  display: flex;
+  align-items: center;
+}
+
+.list-tile {
+  background-color: white;
+  margin: 8px 5px;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.list-tile:hover {
+  background-color: rgb(234, 234, 234);
+  transition: 0.2s ease;
+}
+
+.list-wrapper {
+  overflow-y: scroll;
+}
+
+.list-wrapper::-webkit-scrollbar {
+  display: none;
 }

@@ -5,6 +5,7 @@
   background-color: #f4f5f4;
   margin-inline: auto;
   border-radius: 8px;
+  padding: 5px;
 }
 .image-container {
   flex: 0.6;

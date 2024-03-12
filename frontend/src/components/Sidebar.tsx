@@ -11,6 +11,7 @@ import {
 import ChatItem from "./ChatItem";
 import { useState } from "react";
 import { chatType } from "../types";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -31,6 +32,7 @@ const Sidebar = () => {
       timestamp: "today",
     },
   ]);
+  const navigate = useNavigate();
   return (
     <div className="sidebar">
       <div className="sb-header">
@@ -40,13 +42,25 @@ const Sidebar = () => {
           </IconButton>
         </div>
         <div>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              navigate("users");
+            }}
+          >
             <PersonAdd />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              navigate("groups");
+            }}
+          >
             <GroupAdd />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              navigate("create-group");
+            }}
+          >
             <AddCircle />
           </IconButton>
           <IconButton>
