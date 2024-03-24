@@ -5,6 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import {
   AddCircle,
   GroupAdd,
+  LightMode,
   Nightlight,
   PersonAdd,
 } from "@mui/icons-material";
@@ -12,9 +13,14 @@ import ChatItem from "./ChatItem";
 import { useState } from "react";
 import { chatType } from "../types";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../redux/store";
+import { toggle } from "../redux/slices/themeSlice";
 
 const Sidebar = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const dispatch = useDispatch();
+  const theme = useSelector((state: RootState) => state.themeReducer.value);
   const [chats, setChats] = useState<chatType[]>([
     {
       name: "Test1",
@@ -35,10 +41,10 @@ const Sidebar = () => {
   const navigate = useNavigate();
   return (
     <div className="sidebar">
-      <div className="sb-header">
+      <div className={"sb-header " + (theme ? "dark" : "")}>
         <div>
           <IconButton>
-            <AccountCircleIcon />
+            <AccountCircleIcon className={theme ? "dark" : ""} />
           </IconButton>
         </div>
         <div>
@@ -47,34 +53,38 @@ const Sidebar = () => {
               navigate("users");
             }}
           >
-            <PersonAdd />
+            <PersonAdd className={theme ? "dark" : ""} />
           </IconButton>
           <IconButton
             onClick={() => {
               navigate("groups");
             }}
           >
-            <GroupAdd />
+            <GroupAdd className={theme ? "dark" : ""} />
           </IconButton>
           <IconButton
             onClick={() => {
               navigate("create-group");
             }}
           >
-            <AddCircle />
+            <AddCircle className={theme ? "dark" : ""} />
           </IconButton>
-          <IconButton>
-            <Nightlight />
+          <IconButton onClick={() => dispatch(toggle())}>
+            {!theme && <Nightlight />}
+            {theme && <LightMode className={theme ? "dark" : ""} />}
           </IconButton>
         </div>
       </div>
-      <div className="sb-search">
+      <div className={"sb-search " + (theme ? "dark" : "")}>
         <IconButton>
-          <SearchIcon />
+          <SearchIcon className={theme ? "dark" : ""} />
         </IconButton>
-        <input placeholder="search" className="searchbox" />
+        <input
+          placeholder="search"
+          className={"searchbox " + (theme ? "dark" : "")}
+        />
       </div>
-      <div className="sb-conversations">
+      <div className={"sb-conversations " + (theme ? "dark" : "")}>
         {chats.map((chat, i) => {
           return <ChatItem key={i} {...chat} />;
         })}

@@ -6,6 +6,19 @@
   border-radius: 20px;
   display: flex;
 }
+.main-container-dark {
+  background-color: rgb(54, 52, 52);
+  height: 90vh;
+  width: 90vw;
+  margin-inline: auto;
+  border-radius: 20px;
+  display: flex;
+}
+
+.dark {
+  background-color: rgb(27, 25, 25) !important;
+  color: white;
+}
 
 .sidebar {
   flex: 0.3;
@@ -137,7 +150,17 @@
   overflow: scroll;
 }
 .selfMessage-container {
-  background-color: aquamarine;
+  background-color: rgb(110, 179, 142);
+  color: rgb(44, 33, 33);
+  border-radius: 12px;
+  width: max-content;
+  padding: 5px 5px;
+  margin-left: auto;
+  display: flex;
+}
+.selfMessage-container-dark {
+  background-color: white;
+  color: black;
   border-radius: 12px;
   width: max-content;
   padding: 5px 5px;
@@ -148,7 +171,14 @@
   display: flex;
   justify-content: end;
   font-size: 10px;
-  color: gray;
+  color: rgb(44, 33, 33);
+}
+
+.sm-timestamp-dark {
+  display: flex;
+  justify-content: end;
+  font-size: 10px;
+  color: black;
 }
 .recievedMessage-container {
   display: flex;
@@ -157,8 +187,16 @@
   width: max-content;
   border-radius: 12px;
 }
+
 .rm-box {
   background-color: #f4f5f8;
+  padding: 5px 5px;
+  border-radius: 12px;
+}
+
+.rm-box-dark {
+  background-color: rgb(71, 67, 67);
+  color: white;
   padding: 5px 5px;
   border-radius: 12px;
 }
