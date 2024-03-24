@@ -17,7 +17,7 @@
 
 .dark {
   background-color: rgb(27, 25, 25) !important;
-  color: white;
+  color: white !important;
 }
 
 .sidebar {
@@ -233,6 +233,11 @@
   margin-top: 1rem;
   font-size: 1.5rem;
 }
+.welcome-title-dark {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: white;
+}
 
 .welcome-content {
   display: flex;
@@ -242,6 +247,9 @@
 
 .welcome-slogan {
   color: gray;
+}
+.welcome-slogan-dark {
+  color: rgb(208, 191, 191);
 }
 
 .cg-container {
