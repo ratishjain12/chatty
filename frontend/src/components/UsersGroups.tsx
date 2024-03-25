@@ -25,9 +25,9 @@ const UsersGroups = () => {
           .fill(0)
           .map((i, index) => {
             return (
-              <div key={index} className={"list-tile " + (theme ? "dark" : "")}>
+              <div key={i} className={"list-tile " + (theme ? "dark" : "")}>
                 <Avatar>T</Avatar>
-                Group #{index + 1}
+                Group #{i + 1}
               </div>
             );
           })}
