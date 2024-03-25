@@ -4,6 +4,7 @@ import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {
   AddCircle,
+  ChatSharp,
   GroupAdd,
   LightMode,
   Nightlight,
@@ -47,7 +48,7 @@ const Sidebar = () => {
             <AccountCircleIcon className={theme ? "dark" : ""} />
           </IconButton>
         </div>
-        <div>
+        <div className="icons">
           <IconButton
             onClick={() => {
               navigate("users");
@@ -68,6 +69,15 @@ const Sidebar = () => {
             }}
           >
             <AddCircle className={theme ? "dark" : ""} />
+          </IconButton>
+
+          <IconButton
+            className="chatbubble"
+            onClick={() => {
+              navigate("");
+            }}
+          >
+            <ChatSharp className={theme ? "dark" : ""} />
           </IconButton>
           <IconButton onClick={() => dispatch(toggle())}>
             {!theme && <Nightlight />}
