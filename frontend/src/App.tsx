@@ -9,6 +9,7 @@ import CreateGroups from "./components/CreateGroups";
 import Users from "./components/Users";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
+import Register from "./components/auth/Register";
 function App() {
   const theme = useSelector((state: RootState) => state.themeReducer.value);
   return (
@@ -16,6 +17,7 @@ function App() {
       <div className={"App" + (theme ? "-dark" : "")}>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/app" element={<MainContainer />}>
             <Route index element={<Welcome />} />
             <Route path="chat" element={<ChatArea />} />
