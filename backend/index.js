@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const { dbconnect } = require("./db/connection");
+const authRouter = require("./routes/authRoutes");
 dotenv.config();
 
 const app = express();
@@ -16,6 +17,10 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
+
+//routes
+
+app.use("/auth", authRouter);
 
 app.listen(PORT, () => {
   console.log("Listening on port: ", PORT);
