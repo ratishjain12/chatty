@@ -35,6 +35,7 @@ async function loginController(req, res) {
   if (match) {
     const token = jwt.sign(
       {
+        id: findUser._id,
         username: findUser.username,
         email: findUser.email,
         name: findUser.name,
@@ -73,7 +74,16 @@ async function registerController(req, res) {
       name,
       password: hashedPassword,
     });
-    res.status(201).json({ message: "User registered successfully" });
+    const token = jwt.sign(
+      {
+        id: newUser._id,
+        username: username,
+        email: email,
+        name: name,
+      },
+      process.env.JWT_SECRET_KEY
+    );
+    res.status(201).json({ message: "User registered successfully", token });
   } catch (error) {
     res.status(500).json({ message: "Internal server error", error });
   }
