@@ -3,3 +3,9 @@ export interface chatType {
   lastMessage: string;
   timestamp: string;
 }
+export interface authData {
+  username: string;
+  password: string;
+  email?: string;
+  name?: string;
+}

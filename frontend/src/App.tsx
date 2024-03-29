@@ -10,6 +10,7 @@ import Users from "./components/Users";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import Register from "./components/auth/Register";
+import { Toaster } from "react-hot-toast";
 function App() {
   const theme = useSelector((state: RootState) => state.themeReducer.value);
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="users" element={<Users />} />
           </Route>
         </Routes>
+        <Toaster position="top-center" />
       </div>
     </>
   );

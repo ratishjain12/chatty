@@ -42,6 +42,7 @@ async function loginController(req, res) {
       },
       process.env.JWT_SECRET_KEY
     );
+    res.cookie("token", token);
     return res.json({
       status: 200,
       message: "logged in successfully!!",
@@ -60,9 +61,10 @@ async function registerController(req, res) {
     // Check if username already exists
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
     if (existingUser) {
-      return res
-        .status(400)
-        .json({ message: "Username with email or username already exists" });
+      return res.json({
+        status: 400,
+        message: "Username with email or username already exists",
+      });
     }
 
     // Hash the password
@@ -83,9 +85,10 @@ async function registerController(req, res) {
       },
       process.env.JWT_SECRET_KEY
     );
-    res.status(201).json({ message: "User registered successfully", token });
+    res.cookie("token", token, { httpOnly: false });
+    res.json({ status: 200, message: "User registered successfully", token });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error", error });
+    res.json({ status: 400, message: "Internal server error", error });
   }
 }
 
