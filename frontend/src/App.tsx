@@ -11,20 +11,24 @@ import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import Register from "./components/auth/Register";
 import { Toaster } from "react-hot-toast";
+import PrivateRoutes from "./PrivateRoutes";
 function App() {
   const theme = useSelector((state: RootState) => state.themeReducer.value);
+
   return (
     <>
       <div className={"App" + (theme ? "-dark" : "")}>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/app" element={<MainContainer />}>
-            <Route index element={<Welcome />} />
-            <Route path="chat" element={<ChatArea />} />
-            <Route path="groups" element={<UsersGroups />} />
-            <Route path="create-group" element={<CreateGroups />} />
-            <Route path="users" element={<Users />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/app" element={<MainContainer />}>
+              <Route index element={<Welcome />} />
+              <Route path="chat" element={<ChatArea />} />
+              <Route path="groups" element={<UsersGroups />} />
+              <Route path="create-group" element={<CreateGroups />} />
+              <Route path="users" element={<Users />} />
+            </Route>
           </Route>
         </Routes>
         <Toaster position="top-center" />

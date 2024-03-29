@@ -7,6 +7,7 @@ import {
   ChatSharp,
   GroupAdd,
   LightMode,
+  Logout,
   Nightlight,
   PersonAdd,
 } from "@mui/icons-material";
@@ -17,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../redux/store";
 import { toggle } from "../redux/slices/themeSlice";
+import Cookies from "js-cookie";
 
 const Sidebar = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -39,7 +41,12 @@ const Sidebar = () => {
       timestamp: "today",
     },
   ]);
+
   const navigate = useNavigate();
+  const handleLogout = () => {
+    Cookies.remove("token");
+    navigate("/");
+  };
   return (
     <div className="sidebar">
       <div className={"sb-header " + (theme ? "dark" : "")}>
@@ -82,6 +89,13 @@ const Sidebar = () => {
           <IconButton onClick={() => dispatch(toggle())}>
             {!theme && <Nightlight />}
             {theme && <LightMode className={theme ? "dark" : ""} />}
+          </IconButton>
+          <IconButton
+            onClick={() => {
+              handleLogout();
+            }}
+          >
+            <Logout className={theme ? "dark" : ""} />
           </IconButton>
         </div>
       </div>
