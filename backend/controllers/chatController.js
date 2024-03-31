@@ -3,16 +3,16 @@ const User = require("../models/userModel");
 async function listAllChats(req, res) {
   const user = req.user;
   try {
-    let chats = await Chat.find({ users: { $elemMatch: user._id } })
-      .populate("users", "-password")
-      .populate("groupAdmin", "-password")
-      .populate("latestMessage")
+    let chats = await Chat.find({ users: { $elemMatch: { $eq: user.id } } })
+      .populate("users groupAdmin", "-password")
+      .populate("lastMessage")
       .sort({ updatedAt: -1 });
 
     chats = await User.populate(chats, {
-      path: "latestMessage.sender",
+      path: "lastMessage.sender",
       select: "username email name",
     });
+
     res.status(200).send(chats);
   } catch (e) {
     throw new Error(e.message);
@@ -27,26 +27,26 @@ async function accessChats(req, res) {
   let isChat = await Chat.find({
     isGroupChat: false,
     $and: [
-      { users: { $elemMatch: req.user._id } },
-      { users: { $elemMatch: userId } },
+      { users: { $elemMatch: { $eq: req.user.id } } },
+      { users: { $elemMatch: { $eq: userId } } },
     ],
   })
     .populate("users", "-password")
-    .populate("latestMessage");
+    .populate("lastMessage");
 
   isChat = await User.populate(isChat, {
-    path: "latestMessage.sender",
+    path: "lastMessage.sender",
     select: "username email name",
   });
 
-  if (isChat.lenght > 0) {
+  if (isChat.length > 0) {
     res.send(isChat[0]);
   } else {
     // else create the chat with the user
     let chatData = {
       chatName: "sender",
       isGroupChat: false,
-      users: [req.user._id, userId],
+      users: [req.user.id, userId],
     };
     try {
       const createdChat = await Chat.create(chatData);
@@ -73,13 +73,13 @@ async function createGroupChat(req, res) {
       .send({ message: "More than 2 users are required to make a group" });
   }
 
-  users.push(req.user);
+  usersArr.push(req.user.id);
   try {
     const groupChat = await Chat.create({
       chatName: name,
       isGroupChat: true,
-      users: users,
-      groupAdmin: req.user,
+      users: usersArr,
+      groupAdmin: req.user.id,
     });
 
     const fullGroupChat = await Chat.findOne({ _id: groupChat._id })
@@ -116,7 +116,7 @@ async function exitGroupChat(req, res) {
 
 async function renameGroupChat(req, res) {
   const { chatId, chatName } = req.body;
-  if (!groupId || !newName) {
+  if (!chatId || !chatName) {
     res.status(400).send({ message: "missing details!!" });
   }
 

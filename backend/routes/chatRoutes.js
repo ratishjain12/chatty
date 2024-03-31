@@ -6,6 +6,7 @@ const {
   createGroupChat,
   renameGroupChat,
   groupAdd,
+  exitGroupChat,
 } = require("../controllers/chatController");
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.post("/", authenticationMiddleware, accessChats);
 router.post("/group", authenticationMiddleware, createGroupChat);
 router.put("/rename", authenticationMiddleware, renameGroupChat);
 router.post("/groupadd", authenticationMiddleware, groupAdd);
+router.post("/groupexit", authenticationMiddleware, exitGroupChat);
 
 module.exports = router;

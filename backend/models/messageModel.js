@@ -6,16 +6,13 @@ const messageSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    reciever: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
     chat: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Chat",
     },
     content: {
       type: String,
+      trim: true,
     },
   },
   {
@@ -23,6 +20,6 @@ const messageSchema = new mongoose.Schema(
   }
 );
 
-const messageModel = mongoose.model("Chat", messageSchema);
+const messageModel = mongoose.model("Message", messageSchema);
 
 module.exports = messageModel;

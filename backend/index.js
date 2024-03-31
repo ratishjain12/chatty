@@ -3,6 +3,8 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const { dbconnect } = require("./db/connection");
 const authRouter = require("./routes/authRoutes");
+const chatRouter = require("./routes/chatRoutes");
+const messageRouter = require("./routes/messageRoutes");
 dotenv.config();
 
 const app = express();
@@ -21,6 +23,8 @@ app.get("/", (req, res) => {
 //routes
 
 app.use("/auth", authRouter);
+app.use("/chat", chatRouter);
+app.use("/message", messageRouter);
 
 app.listen(PORT, () => {
   console.log("Listening on port: ", PORT);
