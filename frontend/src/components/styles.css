@@ -62,9 +62,7 @@
 }
 
 .sb-chatitem {
-  display: grid;
-  grid-template-columns: 32px auto auto;
-  grid-template-rows: auto auto;
+  display: flex;
   gap: 12px;
   margin: 5px;
   padding: 5px;
@@ -86,13 +84,22 @@
   font-size: 14px;
   color: gray;
 }
-
+.chatItem-container {
+  flex: 1;
+}
 .sb-timestamp {
-  font-size: 13px;
+  font-size: 10px;
   display: flex;
   align-items: end;
   justify-content: end;
   text-transform: capitalize;
+}
+.chatItem-bottom {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 4px;
+  justify-content: space-between;
 }
 
 .ca-header {
@@ -324,7 +331,7 @@
 .chatbubble {
   display: none !important;
 }
-@media only screen and (max-width: 40.063em) {
+@media only screen and (max-width: 63.063em) {
   .main-container,
   .main-container-dark {
     width: 100%;

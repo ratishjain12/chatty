@@ -1,7 +1,6 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./styles.css";
 import { IconButton } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import {
   AddCircle,
   ChatSharp,
@@ -12,41 +11,43 @@ import {
   PersonAdd,
 } from "@mui/icons-material";
 import ChatItem from "./ChatItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { chatType } from "../types";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../redux/store";
 import { toggle } from "../redux/slices/themeSlice";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 const Sidebar = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatch = useDispatch();
   const theme = useSelector((state: RootState) => state.themeReducer.value);
-  const [chats, setChats] = useState<chatType[]>([
-    {
-      name: "Test1",
-      lastMessage: "last message 1",
-      timestamp: "today",
-    },
-    {
-      name: "Test2",
-      lastMessage: "last message 2",
-      timestamp: "today",
-    },
-    {
-      name: "Test2",
-      lastMessage: "last message 2",
-      timestamp: "today",
-    },
-  ]);
+  const [chats, setChats] = useState([]);
 
   const navigate = useNavigate();
   const handleLogout = () => {
     Cookies.remove("token");
     navigate("/");
   };
+
+  const fetchChats = async () => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/chat/`,
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      }
+    );
+    setChats(response.data);
+  };
+  useEffect(() => {
+    fetchChats();
+  }, []);
+  console.log(chats);
+
   return (
     <div className="sidebar">
       <div className={"sb-header " + (theme ? "dark" : "")}>
@@ -99,18 +100,21 @@ const Sidebar = () => {
           </IconButton>
         </div>
       </div>
-      <div className={"sb-search " + (theme ? "dark" : "")}>
-        <IconButton>
-          <SearchIcon className={theme ? "dark" : ""} />
-        </IconButton>
-        <input
-          placeholder="search"
-          className={"searchbox " + (theme ? "dark" : "")}
-        />
-      </div>
+
       <div className={"sb-conversations " + (theme ? "dark" : "")}>
-        {chats.map((chat, i) => {
-          return <ChatItem key={i} {...chat} />;
+        {chats?.map((chat: chatType) => {
+          return (
+            <ChatItem
+              key={chat._id}
+              lastMessage={chat.lastMessage ? chat.lastMessage.content : ""}
+              createdAt={chat.lastMessage ? chat.lastMessage.createdAt : ""}
+              chatName={
+                chat.chatName == "sender"
+                  ? chat?.users[1].username
+                  : chat.chatName
+              }
+            />
+          );
         })}
       </div>
     </div>

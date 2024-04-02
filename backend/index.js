@@ -5,6 +5,7 @@ const { dbconnect } = require("./db/connection");
 const authRouter = require("./routes/authRoutes");
 const chatRouter = require("./routes/chatRoutes");
 const messageRouter = require("./routes/messageRoutes");
+const userRouter = require("./routes/usersRoutes");
 dotenv.config();
 
 const app = express();
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 app.use("/auth", authRouter);
 app.use("/chat", chatRouter);
 app.use("/message", messageRouter);
+app.use("/user", userRouter);
 
 app.listen(PORT, () => {
   console.log("Listening on port: ", PORT);
