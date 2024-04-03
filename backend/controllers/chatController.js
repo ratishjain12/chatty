@@ -162,6 +162,12 @@ async function groupAdd(req, res) {
   }
 }
 
+async function fetchAllGroups(req, res) {
+  const groups = await Chat.find({
+    isGroupChat: true,
+  });
+  res.status(200).json(groups);
+}
 module.exports = {
   listAllChats,
   accessChats,
@@ -169,4 +175,5 @@ module.exports = {
   exitGroupChat,
   renameGroupChat,
   groupAdd,
+  fetchAllGroups,
 };

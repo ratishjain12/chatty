@@ -1,8 +1,8 @@
 export interface chatType {
-  _id?: string;
-  chatName?: string;
+  _id: string;
+  chatName: string;
   lastMessage?: lastMessage;
-  createdAt?: string;
+  createdAt: string;
   users: User[];
 }
 export interface authData {

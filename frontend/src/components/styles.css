@@ -375,6 +375,9 @@
     flex: 0.6;
     justify-content: space-evenly;
   }
+  .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    cursor: pointer !important;
+  }
   .cg-box {
     margin-inline: 0;
   }

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 const Users = () => {
   const theme = useSelector((state: RootState) => state.themeReducer.value);
   const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState("");
   const fetchUsers = async () => {
     const response = await axios.get(
       `${import.meta.env.VITE_BACKEND_URL}/user/`,
@@ -24,7 +25,29 @@ const Users = () => {
   useEffect(() => {
     fetchUsers();
   }, []);
-  console.log(users);
+
+  useEffect(() => {
+    const timeout = setTimeout(async () => {
+      if (search !== "") {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/user/search?username=${search}`,
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get("token")}`,
+            },
+          }
+        );
+        setUsers(response.data);
+      } else {
+        fetchUsers();
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [search]);
+
   return (
     <div className="list-container">
       <div className={"list-header " + (theme ? "dark" : "")}>
@@ -37,6 +60,8 @@ const Users = () => {
         </IconButton>
         <input
           placeholder="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           className={"searchbox " + (theme ? "dark" : "")}
         />
       </div>
