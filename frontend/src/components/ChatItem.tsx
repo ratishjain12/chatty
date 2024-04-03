@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
 const ChatItem = ({
+  id,
   chatName,
   lastMessage,
   createdAt,
 }: {
+  id: string;
   chatName?: string;
   lastMessage?: string;
   createdAt?: string;
@@ -50,7 +52,7 @@ const ChatItem = ({
     <div
       className="sb-chatitem"
       onClick={() => {
-        navigate("chat");
+        navigate(`chat/${id}`);
       }}
     >
       <Avatar> {chatName![0]}</Avatar>

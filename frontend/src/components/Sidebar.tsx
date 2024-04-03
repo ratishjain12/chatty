@@ -106,6 +106,7 @@ const Sidebar = () => {
           return (
             <ChatItem
               key={chat._id}
+              id={chat._id}
               lastMessage={chat.lastMessage ? chat.lastMessage.content : ""}
               createdAt={chat.lastMessage ? chat.lastMessage.createdAt : ""}
               chatName={
