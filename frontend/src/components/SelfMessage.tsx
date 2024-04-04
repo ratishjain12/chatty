@@ -1,14 +1,26 @@
 import { useSelector } from "react-redux";
 import "./styles.css";
 import { RootState } from "../redux/store";
-export const SelfMessage = () => {
+export const SelfMessage = ({
+  message,
+  time,
+}: {
+  message: string;
+  time: string;
+}) => {
   const theme = useSelector((state: RootState) => state.themeReducer.value);
-  const prop1 = { name: "You", message: "this is a sample message" };
+
   return (
     <div className={"selfMessage-container" + (theme ? "-dark" : "")}>
       <div className="sm-content">
-        <p>{prop1.message}</p>
-        <p className="sm-timestamp">12:00 am</p>
+        <p>{message}</p>
+        <p className="sm-timestamp">
+          {new Date(time).toLocaleTimeString("en-US", {
+            hour12: true,
+            hour: "numeric",
+            minute: "numeric",
+          })}
+        </p>
       </div>
     </div>
   );

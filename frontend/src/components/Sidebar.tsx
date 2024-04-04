@@ -25,10 +25,11 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const theme = useSelector((state: RootState) => state.themeReducer.value);
   const [chats, setChats] = useState([]);
-
+  const userId = localStorage.getItem("id");
   const navigate = useNavigate();
   const handleLogout = () => {
     Cookies.remove("token");
+    localStorage.removeItem("id");
     navigate("/");
   };
 
@@ -111,7 +112,7 @@ const Sidebar = () => {
               createdAt={chat.lastMessage ? chat.lastMessage.createdAt : ""}
               chatName={
                 chat.chatName == "sender"
-                  ? chat?.users[1].username
+                  ? chat.users.find((user) => user._id != userId)?.username
                   : chat.chatName
               }
             />

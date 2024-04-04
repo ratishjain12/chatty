@@ -45,6 +45,7 @@ const Login = () => {
       .then((response) => {
         if (response.data.status == 200) {
           toast.success("Logged in!!");
+          localStorage.setItem("id", response.data.id);
           navigate("/app");
         } else {
           toast.error(response.data.message);

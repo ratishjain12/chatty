@@ -52,7 +52,11 @@ const ChatItem = ({
     <div
       className="sb-chatitem"
       onClick={() => {
-        navigate(`chat/${id}`);
+        navigate(`chat/${id}`, {
+          state: {
+            name: chatName,
+          },
+        });
       }}
     >
       <Avatar> {chatName![0]}</Avatar>

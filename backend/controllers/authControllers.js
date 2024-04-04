@@ -46,6 +46,7 @@ async function loginController(req, res) {
     return res.json({
       status: 200,
       message: "logged in successfully!!",
+      id: findUser._id,
       token,
     });
   }
@@ -86,7 +87,12 @@ async function registerController(req, res) {
       process.env.JWT_SECRET_KEY
     );
     res.cookie("token", token, { httpOnly: false });
-    res.json({ status: 200, message: "User registered successfully", token });
+    res.json({
+      status: 200,
+      message: "User registered successfully",
+      token,
+      id: newUser._id,
+    });
   } catch (error) {
     res.json({ status: 400, message: "Internal server error", error });
   }

@@ -23,3 +23,12 @@ export interface User {
   email: string;
   name: string;
 }
+
+export interface messageType {
+  _id: string;
+  chat: chatType;
+  content: string;
+  createdAt: string;
+  sender: User;
+  updatedAt: string;
+}
