@@ -261,16 +261,15 @@
 
 .cg-container {
   flex: 0.7;
-  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 .cg-box {
   background-color: white;
-  margin-inline: auto;
-  width: 90%;
   display: flex;
   border-radius: 10px;
   padding: 5px;
+  margin: 10px;
 }
 
 .cg-box > input {
@@ -314,8 +313,23 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  justify-content: space-between;
 }
-
+.tab-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.tooltip {
+  display: flex;
+  align-items: center;
+  background-color: #d9d9d9;
+  border-radius: 12px;
+  max-width: fit-content;
+  justify-content: center;
+  padding: 5px;
+  margin: 5px;
+}
 .list-tile:hover {
   background-color: rgb(234, 234, 234);
   transition: 0.2s ease;
@@ -379,7 +393,8 @@
     cursor: pointer !important;
   }
   .cg-box {
-    margin-inline: 0;
+    margin-inline: auto;
+    margin: 10px;
   }
   .cg-box > input {
     font-size: 1em;

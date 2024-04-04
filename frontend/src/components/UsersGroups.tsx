@@ -76,8 +76,12 @@ const UsersGroups = () => {
               className={"list-tile " + (theme ? "dark" : "")}
               style={{ cursor: "pointer" }}
             >
-              <Avatar>{i.chatName[0].toUpperCase()}</Avatar>
-              {i.chatName}
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
+              >
+                <Avatar>{i.chatName[0].toUpperCase()}</Avatar>
+                {i.chatName}
+              </div>
             </div>
           );
         })}

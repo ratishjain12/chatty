@@ -30,6 +30,7 @@ const Sidebar = () => {
   const handleLogout = () => {
     Cookies.remove("token");
     localStorage.removeItem("id");
+    dispatch(toggle());
     navigate("/");
   };
 
@@ -47,7 +48,6 @@ const Sidebar = () => {
   useEffect(() => {
     fetchChats();
   }, []);
-  console.log(chats);
 
   return (
     <div className="sidebar">

@@ -6,6 +6,7 @@ import { RootState } from "../redux/store";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { User } from "../types";
 const Users = () => {
   const theme = useSelector((state: RootState) => state.themeReducer.value);
   const [users, setUsers] = useState([]);
@@ -66,11 +67,15 @@ const Users = () => {
         />
       </div>
       <div className="list-wrapper">
-        {users.map((i: any) => {
+        {users.map((i: User) => {
           return (
             <div key={i._id} className={"list-tile " + (theme ? "dark" : "")}>
-              <Avatar>{i.username[0].toUpperCase()}</Avatar>
-              {i.username}
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
+              >
+                <Avatar>{i.username[0].toUpperCase()}</Avatar>
+                {i.username}
+              </div>
             </div>
           );
         })}
