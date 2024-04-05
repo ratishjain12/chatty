@@ -4,18 +4,24 @@ import "./styles.css";
 import { IconButton } from "@mui/material";
 import RecievedMessage from "./RecievedMessage";
 import { SelfMessage } from "./SelfMessage";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, FormEvent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useParams, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { messageType } from "../types";
+import io, { Socket } from "socket.io-client";
+import { DefaultEventsMap } from "@socket.io/component-emitter";
+
+const endpoint = import.meta.env.VITE_BACKEND_URL;
+let socket: Socket<DefaultEventsMap, DefaultEventsMap>,
+  selectedChatCompare: string;
 const ChatArea = () => {
   const theme = useSelector((state: RootState) => state.themeReducer.value);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const [content, setContent] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<messageType[]>([]);
   const { id } = useParams();
   const userId = localStorage.getItem("id");
   const { state } = useLocation();
@@ -24,7 +30,7 @@ const ChatArea = () => {
       top: chatContainerRef.current.scrollHeight,
       behavior: "smooth", // Use "auto" or "smooth" as per your preference
     });
-  }, [chatContainerRef]);
+  }, [chatContainerRef, messages]);
 
   const fetchMessages = async () => {
     const response = await axios.get(
@@ -39,8 +45,9 @@ const ChatArea = () => {
     setMessages(response.data);
   };
 
-  const sendMessage = async () => {
-    await axios.post(
+  const sendMessage = async (event: FormEvent) => {
+    event.preventDefault();
+    const newMessage = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/message`,
       {
         chatId: id,
@@ -53,16 +60,42 @@ const ChatArea = () => {
       }
     );
     setContent("");
-    fetchMessages();
+
+    socket.emit("new message", newMessage.data);
+    setMessages([...messages, newMessage.data]);
   };
   useEffect(() => {
     fetchMessages();
+
+    selectedChatCompare = state.id;
   }, [id]);
+
+  useEffect(() => {
+    socket = io(endpoint);
+    socket.emit("setup", userId);
+  }, []);
+
+  useEffect(() => {
+    socket.on("message recieved", (newMessageRecieved: messageType) => {
+      if (
+        !selectedChatCompare ||
+        selectedChatCompare !== newMessageRecieved.chat._id
+      ) {
+        return;
+      } else {
+        setMessages([...messages, newMessageRecieved]);
+      }
+    });
+  });
 
   return (
     <div className="chatArea-container">
       <div className={"ca-header " + (theme ? "dark" : "")}>
-        <ChatHeader name={state.name} />
+        <ChatHeader
+          id={state.id}
+          name={state.name}
+          isGroupChat={state.isGroupChat}
+        />
       </div>
 
       <div
@@ -90,18 +123,19 @@ const ChatArea = () => {
           })}
         </div>
       </div>
-
-      <div className={"ca-text " + (theme ? "dark" : "")}>
-        <input
-          placeholder="type a message"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className={theme ? "dark" : ""}
-        />
-        <IconButton onClick={sendMessage}>
-          <SendIcon className={theme ? "dark" : ""} />
-        </IconButton>
-      </div>
+      <form>
+        <div className={"ca-text " + (theme ? "dark" : "")}>
+          <input
+            placeholder="type a message"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className={theme ? "dark" : ""}
+          />
+          <IconButton onClick={sendMessage} type="submit">
+            <SendIcon className={theme ? "dark" : ""} />
+          </IconButton>
+        </div>
+      </form>
     </div>
   );
 };

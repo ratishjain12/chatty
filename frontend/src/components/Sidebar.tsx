@@ -115,6 +115,7 @@ const Sidebar = () => {
                   ? chat.users.find((user) => user._id != userId)?.username
                   : chat.chatName
               }
+              isGroupChat={chat.isGroupChat}
             />
           );
         })}

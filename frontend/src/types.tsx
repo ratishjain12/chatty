@@ -3,6 +3,7 @@ export interface chatType {
   chatName: string;
   lastMessage?: lastMessage;
   createdAt: string;
+  isGroupChat: boolean;
   users: User[];
 }
 export interface authData {

@@ -18,7 +18,11 @@ async function listAllChats(req, res) {
     throw new Error(e.message);
   }
 }
-
+async function deleteChats(req, res) {
+  const { chatId } = req.body;
+  const response = await Chat.deleteOne({ _id: chatId });
+  return res.status(200).json(response);
+}
 async function accessChats(req, res) {
   const { userId } = req.body;
 
@@ -40,7 +44,7 @@ async function accessChats(req, res) {
   });
 
   if (isChat.length > 0) {
-    res.send(isChat[0]);
+    res.status(200).send(isChat[0]);
   } else {
     // else create the chat with the user
     let chatData = {
@@ -165,6 +169,7 @@ async function groupAdd(req, res) {
 async function fetchAllGroups(req, res) {
   const groups = await Chat.find({
     isGroupChat: true,
+    users: { $nin: [req.user.id] },
   });
   res.status(200).json(groups);
 }
@@ -176,4 +181,5 @@ module.exports = {
   renameGroupChat,
   groupAdd,
   fetchAllGroups,
+  deleteChats,
 };

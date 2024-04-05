@@ -28,6 +28,36 @@ app.use("/chat", chatRouter);
 app.use("/message", messageRouter);
 app.use("/user", userRouter);
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log("Listening on port: ", PORT);
+});
+
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "http://localhost:5173",
+  },
+  pingTimeout: 60000,
+});
+
+io.on("connection", (socket) => {
+  console.log("connected to socket.io");
+  socket.on("setup", (id) => {
+    socket.join(id);
+    socket.emit("connected");
+  });
+
+  socket.on("new message", (newMessageRecieved) => {
+    var chat = newMessageRecieved.chat;
+    if (!chat?.users) return console.log("chat.users not defined");
+
+    chat.users.forEach((user) => {
+      if (user._id === newMessageRecieved.sender._id) return;
+      socket.in(user._id).emit("message recieved", newMessageRecieved);
+    });
+  });
+
+  socket.off("setup", () => {
+    console.log("USER DISCONNECTED");
+    socket.leave(userData._id);
+  });
 });

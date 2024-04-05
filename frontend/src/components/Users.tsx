@@ -1,12 +1,13 @@
 import { Avatar, IconButton } from "@mui/material";
 import "./styles.css";
-import { Search } from "@mui/icons-material";
+import { Search, Send } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { User } from "../types";
+import { useNavigate } from "react-router-dom";
 const Users = () => {
   const theme = useSelector((state: RootState) => state.themeReducer.value);
   const [users, setUsers] = useState([]);
@@ -49,6 +50,34 @@ const Users = () => {
     };
   }, [search]);
 
+  const navigate = useNavigate();
+  const createChat = async (id: string) => {
+    const response = await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/chat/`,
+      {
+        userId: id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      navigate(`/app/chat/${response.data._id}`, {
+        state: {
+          id: response.data._id,
+          name:
+            response.data.chatName == "sender"
+              ? response.data.users.find((user: User) => user._id === id)
+                  ?.username
+              : response.data.chatName,
+          isGroupChat: response.data.isGroupChat,
+        },
+      });
+    }
+  };
+
   return (
     <div className="list-container">
       <div className={"list-header " + (theme ? "dark" : "")}>
@@ -76,6 +105,9 @@ const Users = () => {
                 <Avatar>{i.username[0].toUpperCase()}</Avatar>
                 {i.username}
               </div>
+              <IconButton onClick={() => createChat(i._id)}>
+                <Send className={theme ? "dark" : ""} />
+              </IconButton>
             </div>
           );
         })}

@@ -8,11 +8,13 @@ const {
   groupAdd,
   exitGroupChat,
   fetchAllGroups,
+  deleteChats,
 } = require("../controllers/chatController");
 const router = express.Router();
 
 router.get("/", authenticationMiddleware, listAllChats);
 router.post("/", authenticationMiddleware, accessChats);
+router.post("/deletechat", authenticationMiddleware, deleteChats);
 router.post("/group", authenticationMiddleware, createGroupChat);
 router.put("/rename", authenticationMiddleware, renameGroupChat);
 router.post("/groupadd", authenticationMiddleware, groupAdd);

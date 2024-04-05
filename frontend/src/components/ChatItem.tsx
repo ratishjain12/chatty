@@ -7,11 +7,13 @@ const ChatItem = ({
   chatName,
   lastMessage,
   createdAt,
+  isGroupChat,
 }: {
   id: string;
   chatName?: string;
   lastMessage?: string;
   createdAt?: string;
+  isGroupChat: boolean;
 }) => {
   const navigate = useNavigate();
 
@@ -55,6 +57,8 @@ const ChatItem = ({
         navigate(`chat/${id}`, {
           state: {
             name: chatName,
+            isGroupChat: isGroupChat,
+            id: id,
           },
         });
       }}

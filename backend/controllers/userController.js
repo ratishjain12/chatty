@@ -37,6 +37,7 @@ async function searchGroups(req, res) {
     const matchedUsers = await Chat.find({
       chatName: regex,
       isGroupChat: true,
+      users: { $nin: [req.user.id] },
     });
     res.json(matchedUsers);
   } catch (error) {
