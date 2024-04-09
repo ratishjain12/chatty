@@ -63,6 +63,7 @@ const Login = () => {
         <img src="/chat.png" alt="Chat icon" />
       </div>
       <div className={"login-box " + (theme ? "dark" : "")}>
+        <img style={{ width: "100px" }} src="/chat.png" alt="Chat icon" />
         <h3>Login with your account</h3>
         <Formik
           initialValues={initialValues}

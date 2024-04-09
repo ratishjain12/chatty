@@ -83,7 +83,7 @@ const Sidebar = () => {
           <IconButton
             className="chatbubble"
             onClick={() => {
-              navigate("");
+              navigate("/app/conversation");
             }}
           >
             <ChatSharp className={theme ? "dark" : ""} />
@@ -103,6 +103,9 @@ const Sidebar = () => {
       </div>
 
       <div className={"sb-conversations " + (theme ? "dark" : "")}>
+        <h3 style={{ paddingLeft: "12px", paddingBottom: "5px" }}>
+          Recent Chats
+        </h3>
         {chats?.map((chat: chatType) => {
           return (
             <ChatItem

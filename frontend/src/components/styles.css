@@ -59,6 +59,7 @@
   padding: 5px 5px;
   margin: 10px;
   flex: 1;
+  overflow-y: scroll;
 }
 
 .sb-chatitem {
@@ -345,6 +346,12 @@
 .chatbubble {
   display: none !important;
 }
+.mobile-conversation-container {
+  display: none;
+}
+.sb-conversations::-webkit-scrollbar {
+  display: none;
+}
 @media only screen and (max-width: 63.063em) {
   .main-container,
   .main-container-dark {
@@ -402,5 +409,24 @@
   .welcome-slogan,
   .welcome-slogan-dark {
     text-align: center;
+  }
+  .mobile-conversation-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    gap: 10px;
+  }
+  .mobile-header {
+    padding: 10px;
+    border-radius: 12px;
+  }
+  .mobile-conversation {
+    flex: 1;
+    border-radius: 12px;
+    overflow-y: scroll;
+  }
+  .mobile-conversation::-webkit-scrollbar {
+    display: none;
   }
 }

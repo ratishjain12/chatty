@@ -12,6 +12,7 @@ import { RootState } from "./redux/store";
 import Register from "./components/auth/Register";
 import { Toaster } from "react-hot-toast";
 import PrivateRoutes from "./PrivateRoutes";
+import MobileConversations from "./components/MobileConversations";
 function App() {
   const theme = useSelector((state: RootState) => state.themeReducer.value);
 
@@ -28,6 +29,7 @@ function App() {
               <Route path="groups" element={<UsersGroups />} />
               <Route path="create-group" element={<CreateGroups />} />
               <Route path="users" element={<Users />} />
+              <Route path="conversation" element={<MobileConversations />} />
             </Route>
           </Route>
         </Routes>
