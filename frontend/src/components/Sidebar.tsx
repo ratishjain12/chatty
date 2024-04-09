@@ -30,7 +30,9 @@ const Sidebar = () => {
   const handleLogout = () => {
     Cookies.remove("token");
     localStorage.removeItem("id");
-    dispatch(toggle());
+    if (theme === true) {
+      dispatch(toggle());
+    }
     navigate("/");
   };
 
