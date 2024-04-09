@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 dbconnect(process.env.MONGO_URL);
 
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(cors({ credentials: true, origin: process.env.FRONTEND_URL }));
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
@@ -34,7 +34,7 @@ const server = app.listen(PORT, () => {
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL,
   },
   pingTimeout: 60000,
 });
