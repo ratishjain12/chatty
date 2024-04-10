@@ -13,7 +13,7 @@ import { messageType } from "../types";
 import { Socket, io } from "socket.io-client";
 import { DefaultEventsMap } from "@socket.io/component-emitter";
 
-const endpoint = import.meta.env.VITE_BACKEND_URL + ":3000";
+const endpoint = import.meta.env.VITE_BACKEND_URL;
 let socket: Socket<DefaultEventsMap, DefaultEventsMap>,
   selectedChatCompare: string;
 const ChatArea = () => {
@@ -71,7 +71,6 @@ const ChatArea = () => {
 
   useEffect(() => {
     socket = io(endpoint, {
-      transports: ["websocket", "polling"],
       reconnection: true,
       reconnectionAttempts: 5,
     });
