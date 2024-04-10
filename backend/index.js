@@ -16,7 +16,7 @@ dbconnect(process.env.MONGO_URL);
 
 app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.FRONTEND_URL }));
-
+app.set("trust proxy", 1);
 app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
