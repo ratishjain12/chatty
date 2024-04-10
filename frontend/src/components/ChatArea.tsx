@@ -70,7 +70,7 @@ const ChatArea = () => {
   }, [id]);
 
   useEffect(() => {
-    socket = io(endpoint);
+    socket = io(endpoint, { withCredentials: true });
     socket.emit("setup", userId);
 
     return () => {

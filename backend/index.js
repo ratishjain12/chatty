@@ -19,7 +19,14 @@ const PORT = process.env.PORT || 5000;
 dbconnect(process.env.MONGO_URL);
 
 app.use(express.json());
-app.use(cors({ credentials: true, origin: process.env.FRONTEND_URL }));
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
