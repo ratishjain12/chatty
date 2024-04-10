@@ -35,7 +35,7 @@ const Login = () => {
   const handleLogin = (values: authData) => {
     // Handle login logic here, for example, making an API call
     axios
-      .post(`${backendUrl}auth/login`, values, {
+      .post(`${backendUrl}/auth/login`, values, {
         withCredentials: true,
         headers: {
           "Access-Control-Allow-Origin": "*",
