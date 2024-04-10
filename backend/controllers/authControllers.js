@@ -42,7 +42,7 @@ async function loginController(req, res) {
       },
       process.env.JWT_SECRET_KEY
     );
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token, { secure: true });
     return res.json({
       status: 200,
       message: "logged in successfully!!",
@@ -86,7 +86,7 @@ async function registerController(req, res) {
       },
       process.env.JWT_SECRET_KEY
     );
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token, { secure: true });
     res.json({
       status: 200,
       message: "User registered successfully",
