@@ -17,9 +17,10 @@ const io = new Server(server, {
   cors: {
     origin: "https://chattyproject.vercel.app",
     methods: ["GET", "POST"],
-    credentials: true,
+    transports: ["websocket", "polling"],
+    allowEIO3: true,
   },
-  secure: true,
+  rejectUnauthorized: false,
 });
 const PORT = process.env.PORT || 5000;
 
