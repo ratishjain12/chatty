@@ -72,6 +72,10 @@ const ChatArea = () => {
   useEffect(() => {
     socket = io(endpoint);
     socket.emit("setup", userId);
+
+    return () => {
+      socket.close();
+    };
   }, []);
 
   useEffect(() => {
