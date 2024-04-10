@@ -90,7 +90,11 @@ async function registerController(req, res) {
       },
       process.env.JWT_SECRET_KEY
     );
-    res.cookie("token", token, { secure: true, httpOnly: true });
+    res.cookie("token", token, {
+      secure: true,
+      httpOnly: true,
+      sameSite: "none",
+    });
     res.json({
       status: 200,
       message: "User registered successfully",
