@@ -47,6 +47,10 @@ app.use("/chat", chatRouter);
 app.use("/message", messageRouter);
 app.use("/user", userRouter);
 
+server.listen(PORT, () => {
+  console.log("Server is running on port", PORT);
+});
+
 io.on("connection", (socket) => {
   console.log("connected to socket.io");
   socket.on("setup", (id) => {
@@ -67,8 +71,4 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log(`Socket ${socket.id} disconnected`);
   });
-});
-
-server.listen(PORT, () => {
-  console.log("Server is running on port", PORT);
 });

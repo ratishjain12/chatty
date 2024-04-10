@@ -13,7 +13,7 @@ import { messageType } from "../types";
 import { Socket, io } from "socket.io-client";
 import { DefaultEventsMap } from "@socket.io/component-emitter";
 
-const endpoint = import.meta.env.VITE_BACKEND_URL;
+const endpoint = import.meta.env.VITE_BACKEND_URL + ":3000";
 let socket: Socket<DefaultEventsMap, DefaultEventsMap>,
   selectedChatCompare: string;
 const ChatArea = () => {
@@ -80,7 +80,7 @@ const ChatArea = () => {
     });
 
     return () => {
-      socket.close();
+      socket.disconnect();
     };
   }, []);
 
