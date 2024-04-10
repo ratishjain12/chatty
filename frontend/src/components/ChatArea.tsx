@@ -78,10 +78,6 @@ const ChatArea = () => {
     socket.on("connect", function () {
       socket.emit("setup", userId);
     });
-
-    return () => {
-      socket.disconnect();
-    };
   }, []);
 
   useEffect(() => {
