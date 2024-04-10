@@ -12,7 +12,7 @@ dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = socketIo(server, { cors: "*" });
 const PORT = process.env.PORT || 5000;
 
 //deb connection
