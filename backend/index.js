@@ -7,18 +7,17 @@ const chatRouter = require("./routes/chatRoutes");
 const messageRouter = require("./routes/messageRoutes");
 const userRouter = require("./routes/usersRoutes");
 const http = require("http");
-const socketIo = require("socket.io");
+const { Server } = require("socket.io");
 dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server, {
+const io = new Server(server, {
   pingTimeout: 60000,
-  cors: { origin: process.env.FRONTEND_URL, credentials: true },
-  handlePreflightRequest: (req, res) => {
-    res.writeHead(200, {
-      "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
-    });
+  cors: {
+    origin: "https://chattyproject.vercel.app",
+    methods: ["GET", "POST"],
+    credentials: true,
   },
   secure: true,
 });
