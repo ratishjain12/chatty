@@ -71,7 +71,9 @@ const ChatArea = () => {
 
   useEffect(() => {
     socket = io(endpoint, { transports: ["websocket"] });
-    socket.emit("setup", userId);
+    socket.on("connect", function () {
+      socket.emit("setup", userId);
+    });
 
     return () => {
       socket.close();
@@ -89,7 +91,7 @@ const ChatArea = () => {
         setMessages([...messages, newMessageRecieved]);
       }
     });
-  }, [messages]);
+  });
 
   return (
     <div className="chatArea-container">
