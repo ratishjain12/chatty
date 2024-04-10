@@ -3,7 +3,6 @@ import { RootState } from "../redux/store";
 import { useEffect, useState } from "react";
 import { chatType } from "../types";
 import ChatItem from "./ChatItem";
-import Cookies from "js-cookie";
 import axios from "axios";
 
 const MobileConversations = () => {
@@ -15,7 +14,7 @@ const MobileConversations = () => {
       `${import.meta.env.VITE_BACKEND_URL}/chat/`,
       {
         headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );

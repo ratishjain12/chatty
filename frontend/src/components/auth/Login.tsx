@@ -8,14 +8,14 @@ import axios from "axios";
 import { authData } from "../../types";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
-import Cookies from "js-cookie";
+
 const Login = () => {
   const theme = useSelector((state: RootState) => state.themeReducer.value);
   const navigate = useNavigate();
 
   useEffect(() => {
     // Check if token cookie exists
-    const token = Cookies.get("token");
+    const token = localStorage.getItem("token");
     if (token) {
       navigate("/app");
     }
@@ -46,6 +46,7 @@ const Login = () => {
         if (response.data.status == 200) {
           toast.success("Logged in!!");
           localStorage.setItem("id", response.data.id);
+          localStorage.setItem("token", response.data.token);
           navigate("/app");
         } else {
           toast.error(response.data.message);

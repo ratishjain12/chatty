@@ -42,6 +42,8 @@ const Register = () => {
       .then((response) => {
         if (response.data.status == 200) {
           toast.success("Registered successfully!!");
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("id", response.data.id);
           navigate("/app");
         } else {
           toast.error(response.data.message);

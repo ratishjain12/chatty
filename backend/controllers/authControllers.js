@@ -42,11 +42,7 @@ async function loginController(req, res) {
       },
       process.env.JWT_SECRET_KEY
     );
-    res.cookie("token", token, {
-      secure: true,
-      sameSite: "none",
-      maxAge: 2 * 60 * 60 * 1000,
-    });
+
     return res.json({
       status: 200,
       message: "logged in successfully!!",
@@ -90,11 +86,7 @@ async function registerController(req, res) {
       },
       process.env.JWT_SECRET_KEY
     );
-    res.cookie("token", token, {
-      secure: true,
-      sameSite: "none",
-      maxAge: 2 * 60 * 60 * 1000,
-    });
+
     res.json({
       status: 200,
       message: "User registered successfully",

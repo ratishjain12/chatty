@@ -4,7 +4,6 @@ import { CoPresent, Search } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { chatType } from "../types";
 import toast from "react-hot-toast";
@@ -20,7 +19,7 @@ const UsersGroups = () => {
       `${import.meta.env.VITE_BACKEND_URL}/chat/groups`,
       {
         headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
@@ -40,7 +39,7 @@ const UsersGroups = () => {
           }/user/groupsearch?groupName=${search}`,
           {
             headers: {
-              Authorization: `Bearer ${Cookies.get("token")}`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );
@@ -64,7 +63,7 @@ const UsersGroups = () => {
       },
       {
         headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );

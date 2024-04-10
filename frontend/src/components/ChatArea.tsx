@@ -8,7 +8,6 @@ import { useRef, useEffect, useState, FormEvent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useParams, useLocation } from "react-router-dom";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { messageType } from "../types";
 import io, { Socket } from "socket.io-client";
@@ -37,7 +36,7 @@ const ChatArea = () => {
       `${import.meta.env.VITE_BACKEND_URL}/message/${id}`,
       {
         headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
@@ -55,7 +54,7 @@ const ChatArea = () => {
       },
       {
         headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );

@@ -41,7 +41,7 @@ const Sidebar = () => {
       `${import.meta.env.VITE_BACKEND_URL}/chat/`,
       {
         headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );

@@ -20,7 +20,7 @@ const CreateGroups = () => {
       `${import.meta.env.VITE_BACKEND_URL}/user/`,
       {
         headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
@@ -68,7 +68,7 @@ const CreateGroups = () => {
       },
       {
         headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
@@ -89,7 +89,7 @@ const CreateGroups = () => {
           `${import.meta.env.VITE_BACKEND_URL}/user/search?username=${search}`,
           {
             headers: {
-              Authorization: `Bearer ${Cookies.get("token")}`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );

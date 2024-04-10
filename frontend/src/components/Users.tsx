@@ -3,7 +3,6 @@ import "./styles.css";
 import { Search, Send } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { User } from "../types";
@@ -17,7 +16,7 @@ const Users = () => {
       `${import.meta.env.VITE_BACKEND_URL}/user/`,
       {
         headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
@@ -35,7 +34,7 @@ const Users = () => {
           `${import.meta.env.VITE_BACKEND_URL}/user/search?username=${search}`,
           {
             headers: {
-              Authorization: `Bearer ${Cookies.get("token")}`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );
@@ -59,7 +58,7 @@ const Users = () => {
       },
       {
         headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
