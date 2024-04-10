@@ -16,6 +16,11 @@ const io = socketIo(server, {
   pingTimeout: 60000,
   cors: { origin: process.env.FRONTEND_URL, credentials: true },
   transports: ["websocket", "polling", "flashsocket"],
+  handlePreflightRequest: (req, res) => {
+    res.writeHead(200, {
+      "Access-Controll-Allow-Origin": process.env.FRONTEND_URL,
+    });
+  },
 });
 const PORT = process.env.PORT || 5000;
 
