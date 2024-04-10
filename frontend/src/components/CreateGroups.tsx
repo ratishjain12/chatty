@@ -3,7 +3,6 @@ import { Avatar, IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { User } from "../types";
 import toast from "react-hot-toast";

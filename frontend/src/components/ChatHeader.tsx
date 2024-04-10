@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { ExitToApp } from "@mui/icons-material";
 import axios from "axios";
-import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 const ChatHeader = ({
