@@ -7,10 +7,12 @@ const chatRouter = require("./routes/chatRoutes");
 const messageRouter = require("./routes/messageRoutes");
 const userRouter = require("./routes/usersRoutes");
 const http = require("http");
+const socketIo = require("socket.io");
 dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
+const io = socketIo(server);
 const PORT = process.env.PORT || 5000;
 
 //deb connection
