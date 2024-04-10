@@ -21,6 +21,7 @@ const io = socketIo(server, {
       "Access-Controll-Allow-Origin": process.env.FRONTEND_URL,
     });
   },
+  secure: true,
 });
 const PORT = process.env.PORT || 5000;
 
