@@ -15,6 +15,7 @@ const server = http.createServer(app);
 const io = socketIo(server, {
   pingTimeout: 60000,
   cors: { origin: process.env.FRONTEND_URL, credentials: true },
+  transports: ["websocket", "polling", "flashsocket"],
 });
 const PORT = process.env.PORT || 5000;
 
