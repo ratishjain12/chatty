@@ -89,7 +89,7 @@ const ChatArea = () => {
         setMessages([...messages, newMessageRecieved]);
       }
     });
-  });
+  }, [messages]);
 
   return (
     <div className="chatArea-container">
