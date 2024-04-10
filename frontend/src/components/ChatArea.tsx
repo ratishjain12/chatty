@@ -10,7 +10,7 @@ import { RootState } from "../redux/store";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import { messageType } from "../types";
-import io, { Socket } from "socket.io-client";
+import { Socket, io } from "socket.io-client";
 import { DefaultEventsMap } from "@socket.io/component-emitter";
 
 const endpoint = import.meta.env.VITE_BACKEND_URL;
