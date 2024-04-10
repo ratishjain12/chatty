@@ -13,7 +13,7 @@ import { messageType } from "../types";
 import { Socket, io } from "socket.io-client";
 import { DefaultEventsMap } from "@socket.io/component-emitter";
 
-const endpoint = import.meta.env.VITE_BACKEND_URL;
+// const endpoint = import.meta.env.VITE_BACKEND_URL;
 let socket: Socket<DefaultEventsMap, DefaultEventsMap>,
   selectedChatCompare: string;
 const ChatArea = () => {
@@ -70,7 +70,9 @@ const ChatArea = () => {
   }, [id]);
 
   useEffect(() => {
-    socket = io(endpoint, { transports: ["websocket"] });
+    socket = io("wss://chatty-api-v1.vercel.app", {
+      transports: ["websocket"],
+    });
     socket.on("connect", function () {
       socket.emit("setup", userId);
     });
