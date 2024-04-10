@@ -17,7 +17,7 @@ const io = socketIo(server, {
   cors: { origin: process.env.FRONTEND_URL, credentials: true },
   handlePreflightRequest: (req, res) => {
     res.writeHead(200, {
-      "Access-Controll-Allow-Origin": process.env.FRONTEND_URL,
+      "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
     });
   },
   secure: true,
