@@ -17,7 +17,6 @@ const io = new Server(server, {
   cors: {
     origin: "https://chattyproject.vercel.app",
     methods: ["GET", "POST"],
-    transports: ["websocket", "polling"],
     allowEIO3: true,
   },
   rejectUnauthorized: false,
