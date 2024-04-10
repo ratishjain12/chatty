@@ -45,6 +45,7 @@ async function loginController(req, res) {
     res.cookie("token", token, {
       secure: true,
       sameSite: "none",
+      maxAge: 2 * 60 * 60 * 1000,
     });
     return res.json({
       status: 200,
@@ -92,6 +93,7 @@ async function registerController(req, res) {
     res.cookie("token", token, {
       secure: true,
       sameSite: "none",
+      maxAge: 2 * 60 * 60 * 1000,
     });
     res.json({
       status: 200,
