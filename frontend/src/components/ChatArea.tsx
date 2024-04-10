@@ -71,6 +71,7 @@ const ChatArea = () => {
 
   useEffect(() => {
     socket = io(endpoint, {
+      transports: ["websocket", "polling"],
       reconnection: true,
       reconnectionAttempts: 5,
     });
