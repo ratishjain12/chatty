@@ -44,7 +44,6 @@ async function loginController(req, res) {
     );
     res.cookie("token", token, {
       secure: true,
-      httpOnly: true,
       sameSite: "none",
     });
     return res.json({
@@ -92,7 +91,6 @@ async function registerController(req, res) {
     );
     res.cookie("token", token, {
       secure: true,
-      httpOnly: true,
       sameSite: "none",
     });
     res.json({
