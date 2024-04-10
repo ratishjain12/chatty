@@ -54,7 +54,7 @@ const ChatItem = ({
     <div
       className="sb-chatitem"
       onClick={() => {
-        navigate(`chat/${id}`, {
+        navigate(`/app/chat/${id}`, {
           state: {
             name: chatName,
             isGroupChat: isGroupChat,
