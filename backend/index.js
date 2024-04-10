@@ -14,7 +14,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   pingTimeout: 60000,
-  cors: { origin: process.env.FRONTEND_URL },
+  cors: { origin: process.env.FRONTEND_URL, credentials: true },
 });
 const PORT = process.env.PORT || 5000;
 
