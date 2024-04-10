@@ -6,9 +6,11 @@ const authRouter = require("./routes/authRoutes");
 const chatRouter = require("./routes/chatRoutes");
 const messageRouter = require("./routes/messageRoutes");
 const userRouter = require("./routes/usersRoutes");
+const http = require("http");
 dotenv.config();
 
 const app = express();
+const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
 
 //deb connection
@@ -27,18 +29,6 @@ app.use("/auth", authRouter);
 app.use("/chat", chatRouter);
 app.use("/message", messageRouter);
 app.use("/user", userRouter);
-
-const server = app.listen(PORT, () => {
-  console.log("Listening on port: ", PORT);
-});
-
-const io = require("socket.io")(server, {
-  cors: {
-    origin: process.env.FRONTEND_URL,
-    methods: ["GET", "POST"],
-  },
-  pingTimeout: 60000,
-});
 
 io.on("connection", (socket) => {
   console.log("connected to socket.io");
@@ -60,4 +50,8 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log(`Socket ${socket.id} disconnected`);
   });
+});
+
+server.listen(PORT, () => {
+  console.log("Server is running on port", PORT);
 });
