@@ -42,7 +42,7 @@ async function loginController(req, res) {
       },
       process.env.JWT_SECRET_KEY
     );
-    res.cookie("token", token);
+    res.cookie("token", token, { httpOnly: true });
     return res.json({
       status: 200,
       message: "logged in successfully!!",
