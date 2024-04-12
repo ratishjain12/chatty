@@ -436,7 +436,7 @@
   .main-container-dark {
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: fit-content;
     margin: 10px;
   }
   .chatbubble {
@@ -502,11 +502,13 @@
   }
   .mobile-header {
     border-radius: 12px;
-    margin-left: 12px;
+    padding: 5px;
+    margin: 10px;
   }
   .mobile-conversation {
     flex: 1;
     border-radius: 12px;
+    margin: 10px;
     overflow-y: scroll;
   }
   .mobile-conversation::-webkit-scrollbar {
@@ -520,6 +522,8 @@
     margin-inline: auto;
   }
   .ca-messages {
+    min-height: 400px;
+    max-height: 400px;
   }
 
   .ca-text > input {
