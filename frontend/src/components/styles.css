@@ -436,7 +436,7 @@
   .main-container-dark {
     align-items: center;
     flex-direction: column;
-    height: auto;
+    height: 100vh;
     margin: 10px;
   }
   .chatbubble {
