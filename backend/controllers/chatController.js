@@ -1,5 +1,6 @@
 const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
+const Message = require("../models/messageModel");
 async function listAllChats(req, res) {
   const user = req.user;
   try {
@@ -98,6 +99,10 @@ async function createGroupChat(req, res) {
 
 async function exitGroupChat(req, res) {
   const { chatId, userId } = req.body;
+  const removeUserChats = await Message.deleteMany({
+    sender: userId,
+    chat: chatId,
+  });
   const removed = await Chat.findByIdAndUpdate(
     chatId,
     {
@@ -110,7 +115,7 @@ async function exitGroupChat(req, res) {
     .populate("users", "-password")
     .populate("groupAdmin", "-password");
 
-  if (!removed) {
+  if (!removed && !removeUserChats) {
     res.status(400);
     throw new Error("Group Chat Not Found!!");
   } else {

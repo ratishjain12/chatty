@@ -1,5 +1,4 @@
 import { Avatar, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import "./styles.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
@@ -42,28 +41,7 @@ const ChatHeader = ({
       }
     }
   };
-  const deleteChat = async (id: string) => {
-    const valid = confirm("Are you sure you want to delete this chat?");
-    if (valid) {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/chat/deletechat`,
-        {
-          chatId: id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
 
-      if (response.status === 200) {
-        toast.success("chat deleted");
-        navigate("/app");
-        location.reload();
-      }
-    }
-  };
   return (
     <div className={"ch-container "}>
       <div className="left-header">
@@ -73,13 +51,9 @@ const ChatHeader = ({
           <p className="ch-status">Online</p>
         </div>
       </div>
-      {isGroupChat == true ? (
+      {isGroupChat == true && (
         <IconButton onClick={() => exitGroupChat(id)}>
           <ExitToApp className={theme ? "dark" : ""} />
-        </IconButton>
-      ) : (
-        <IconButton onClick={() => deleteChat(id)}>
-          <DeleteIcon className={theme ? "dark" : ""} />
         </IconButton>
       )}
     </div>
