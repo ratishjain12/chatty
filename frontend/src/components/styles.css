@@ -510,16 +510,16 @@
   }
   .ca-header {
     display: flex;
-    max-width: 100%;
+    max-width: 230px;
   }
   .ch-container {
     flex: 1;
   }
   .ca-messages {
-    max-width: 100%;
+    max-width: 230px;
   }
   .ca-text {
-    max-width: 100%;
+    max-width: 230px;
   }
   .ca-text > input {
     flex: 0.5;
