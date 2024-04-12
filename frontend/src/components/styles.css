@@ -436,7 +436,8 @@
   .main-container-dark {
     align-items: center;
     flex-direction: column;
-    flex: 0.1;
+    height: auto;
+    margin: 10px;
   }
   .chatbubble {
     display: block !important;
@@ -519,10 +520,8 @@
     margin-inline: auto;
   }
   .ca-messages {
-    flex: 1;
   }
-  .ca-text {
-  }
+
   .ca-text > input {
     /* flex: 0.5; */
     flex: 0.3;
