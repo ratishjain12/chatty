@@ -436,6 +436,7 @@
   .main-container-dark {
     align-items: center;
     flex-direction: column;
+    min-height: 500px;
     height: fit-content;
     margin: 10px;
   }
