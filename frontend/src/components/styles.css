@@ -429,6 +429,25 @@
   .mobile-conversation::-webkit-scrollbar {
     display: none;
   }
+  .ca-header {
+    display: flex;
+    max-width: 90%;
+  }
+  .ch-container {
+    flex: 1;
+  }
+  .ca-messages {
+    max-width: 90%;
+  }
+  .ca-text {
+    max-width: 90%;
+  }
+  .ca-text > input {
+    flex: 0.5;
+  }
+  .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    padding: 2px;
+  }
 }
 
 @media only screen and (max-width: 321px) {
