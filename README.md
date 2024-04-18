@@ -1,4 +1,5 @@
 # Chatty App
+- Demo - https://chattyproject.vercel.app
 ## Tech Stack 
 - React
 - Express
